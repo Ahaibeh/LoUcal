@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rental Calculator</title>
+  <style>
+    /* CSS styling for the calculator */
+    .calculator {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 300px;
+    }
+
+    .calculator label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .calculator input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .calculator input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .calculator .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Rental Calculator</h2>
+    <form id="rentalForm">
+      <label for="rentalBudget">Rental Budget Max:</label>
+      <input type="number" id="rentalBudget" required>
+
+      <label for="dailyCost">Daily Cost of Rental:</label>
+      <input type="number" id="dailyCost" required>
+
+      <input type="submit" value="Calculate">
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // JavaScript code for the calculator functionality
+    document.getElementById('rentalForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var rentalBudget = parseFloat(document.getElementById('rentalBudget').value);
+      var dailyCost = parseFloat(document.getElementById('dailyCost').value);
+
+      if (isNaN(rentalBudget) || isNaN(dailyCost)) {
+        document.getElementById('result').innerHTML = 'Please enter valid numeric values.';
+      } else {
+        var days = Math.ceil(rentalBudget / dailyCost);
+        document.getElementById('result').innerHTML = 'You can rent for ' + days + ' days within your budget.';
+      }
+    });
+  </script>
+</body>
+</html>
